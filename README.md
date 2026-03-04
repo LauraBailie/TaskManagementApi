@@ -1,82 +1,79 @@
-<div align="center"
+<div align="center">
 
-    <h1>📌 Task Management API </h1>
+# 📌 Task Management API
 
-    ![.NET](https://img.shields.io/badge/.NET-8.0-blue)
-    ![Build](https://img.shields.io/github/actions/workflow/status/LauraBailie/task-management-api/dotnet.yml)
-    ![License](https://img.shields.io/badge/status-Active-green)>
+[![.NET](https://img.shields.io/badge/.NET-8.0-blue?style=for-the-badge&logo=dotnet)]()
+[![Build & Deploy](https://img.shields.io/github/actions/workflow/status/LauraBailie/task-management-api/deploy.yml?style=for-the-badge)]()
+[![Azure](https://img.shields.io/badge/Hosted%20on-Azure-0078D4?style=for-the-badge&logo=microsoftazure)]()
+[![Status](https://img.shields.io/badge/status-Production%20Ready-green?style=for-the-badge)]()
+
+Production-ready ASP.NET Core Web API demonstrating secure authentication, clean architecture, automated testing, CI/CD, and Azure cloud deployment.
 
 </div>
 
-## Overview
+---
 
-Task Management API is a secure RESTful Web API built using **ASP.NET Core (.NET 8)**.  
+# 🌍 Live Demo
 
-The project demonstrates modern backend engineering practices including:
+### 🔎 Swagger UI
+👉 https://manage-task-fdenbvbxe3hbffc2.southafricanorth-01.azurewebsites.net/swagger
 
-- JWT-based authentication & authorization
-- Entity Framework Core (SQLite)
-- Clean separation of concerns (Controllers, Services, Repositories)
-- Swagger/OpenAPI documentation with secured endpoints
-- Unit testing with xUnit and Moq
-- Continuous Integration via GitHub Actions
-- Cloud deployment-ready architecture
-
-This project was designed to reflect production-ready backend development aligned with Agile and DevOps environments.
+### ❤️ Health Check
+👉 https://manage-task-fdenbvbxe3hbffc2.southafricanorth-01.azurewebsites.net/health
 
 ---
 
-## Architecture Overview
+# 🚀 Overview
 
-The application follows a layered architecture:
+Task Management API is a secure RESTful API built using **ASP.NET Core (.NET 8)**.
+
+It demonstrates real-world backend engineering practices:
+
+- 🔐 JWT Authentication & Authorization
+- 🧱 Clean Layered Architecture
+- 🗄 Entity Framework Core (SQLite)
+- 🧪 Unit Testing (xUnit + Moq)
+- 🔄 CI/CD with GitHub Actions
+- ☁️ Azure App Service Deployment
+- 📊 Production Monitoring Ready
+
+---
+
+# 🏗 System Architecture
+
+## Layered Architecture
 
 
-Controller → Service → Repository → Database
+Client → Controller → Service → Repository → Database
+
 
 ```mermaid
 flowchart LR
 
-%% Client Layer
-Client["Client Application
-(Postman / Swagger UI / Frontend)"]
+Client["Client (Swagger / Postman)"]
 
-%% API Layer
 subgraph API["ASP.NET Core Web API (.NET 8)"]
-    Controllers["Controllers
-    - AuthController
-    - TasksController"]
-
-    Middleware["Middleware
-    - JWT Authentication
-    - Authorization
-    - HTTPS Redirection"]
-
-    Swagger["Swagger / OpenAPI"]
+Controllers["Controllers"]
+Middleware["JWT Authentication"]
+Swagger["Swagger / OpenAPI"]
 end
 
-%% Business Layer
 subgraph Services["Business Layer"]
-    TaskService["TaskService
-    (Business Logic)"]
+Service["TaskService"]
 end
 
-%% Data Layer
-subgraph Data["Data Access Layer"]
-    Repository["ITaskRepository
-    TaskRepository"]
-    EFCore["Entity Framework Core"]
-    Database[("SQLite Database")]
+subgraph Data["Data Layer"]
+Repository["TaskRepository"]
+EFCore["EF Core"]
+Database[("SQLite")]
 end
 
-%% CI/CD
-CI["GitHub Actions
-Build • Test • Publish"]
+CI["GitHub Actions"]
 Azure["Azure App Service"]
 
-%% Flow
 Client --> Controllers
-Controllers --> TaskService
-TaskService --> Repository
+Controllers --> Service
+Service --> Repository
 Repository --> EFCore
 EFCore --> Database
 
@@ -85,181 +82,134 @@ Controllers --> Swagger
 
 CI --> Azure
 Azure --> Client
-```
-
-### Architectural Principles
-
-- Follows a layered architecture pattern
-- Business logic isolated in service layer
-- Repository pattern abstracts persistence
-- JWT middleware secures protected routes
-- Designed for scalability and testability
-- CI/CD pipeline ensures build integrity before deployment
 
 
-```mermaid
+🔐 Authentication Flow
+
 sequenceDiagram
     participant Client
-    participant API
     participant AuthController
     participant JWT
+    participant API
 
     Client->>AuthController: POST /api/auth/login
     AuthController->>JWT: Generate Token
-    JWT-->>Client: Return JWT Token
+    JWT-->>Client: Return JWT
 
     Client->>API: Request with Bearer Token
     API->>JWT: Validate Token
     JWT-->>API: Valid
     API-->>Client: Protected Resource
-```
 
 
 
-### Responsibilities
 
-- **Controllers**: Handle HTTP requests and responses
-- **Services**: Business logic layer
-- **Repositories**: Data access abstraction
-- **EF Core**: Database interaction
-- **JWT Middleware**: Authentication & security enforcement
-
-This separation ensures maintainability, scalability, and testability.
-
----
-
-## Authentication & Security
-
-- JWT token-based authentication
-- Token validation (Issuer, Audience, Lifetime, Signing Key)
-- Swagger integration with Bearer token support
-- Authorization middleware enforced at controller level
-
----
-
-## Testing Strategy
-
-Unit tests validate:
-
-- Service logic
-- Repository interactions (mocked)
-- Expected outputs and validation rules
-
-Testing framework:
-- xUnit
-- Moq
-
-Tests are executed automatically via GitHub Actions CI pipeline.
-
----
-
-## CI/CD
-
-On every push to `main`:
-
-- Project restores dependencies
-- Builds solution
-- Runs unit tests
-- Fails pipeline if tests fail
-
-This ensures code quality and deployment stability.
-
----
-
-🌍 Live Demo
-
-Swagger UI:
-
-👉
-https://manage-task-fdenbvbxe3hbffc2.southafricanorth-01.azurewebsites.net/swagger
-
-Health check endpoint:
-
-👉
-https://manage-task-fdenbvbxe3hbffc2.southafricanorth-01.azurewebsites.net/health
-
-
-### Example Flow
-
-1. POST `/api/auth/login`
-2. Copy JWT token
-3. Click “Authorize” in Swagger
-4. Enter:
-
-Bearer <your_token>
-
-5. Access protected endpoints
-
----
-
-🧪 How To Run Locally 
-
-```bash
-git clone https://github.com/LauraBailie/task-management-api.git
-cd task-management-api
-dotnet restore
-dotnet run
-```
-
-Navigate to:
-
-https://localhost:5253/swagger
-
-
-
-🏗 Architecture
-
+📷 Screenshots
+✅ CI/CD Pipeline Success
+<p align="center"> <img src="docs/images/CI-Pipeline.png" width="800"/> </p>
+🔎 Swagger UI (Live Deployment)
+<p align="center"> <img src="docs/images/Swagger-UI-Running.png" width="800"/> </p>
 
 
 
 🔐 Features
 
-- User authentication with JWT
+- JWT-secured authentication
 
-- Secure endpoints with [Authorize]
+- Protected endpoints with [Authorize]
 
-- CRUD task operations
+- Full CRUD task management
 
-- Swagger with JWT support
+- Swagger UI with Bearer token support
 
 - Health check endpoint
 
-- Production environment configuration
+- Environment-based configuration
+
+- Automated CI pipeline
+
+- Production-ready cloud deployment
 
 
-CI/CD pipeline with automated test & deployment
+🧪 Testing Strategy
 
-🚀 DevOps & Deployment
+Unit tests validate:
 
-This project uses:
+- Business logic (Service layer)
 
-- GitHub Actions for CI/CD
+- Repository interactions (mocked)
 
-- Automated build & test on push to main
+- Validation rules and expected outputs
 
-- Secure secret management via GitHub Secrets
+- Testing Tools
 
-- Azure App Service for hosting
+- xUnit
 
-- Environment variables configured via Azure
+- Moq
+
+Tests run automatically via GitHub Actions.
 
 
-⚙️ Environment Variables (Production)
+🔄 CI/CD Pipeline
 
-Configured in Azure App Service:
+On every push to main:
+
+- Restore dependencies
+
+- Build solution
+
+- Run unit tests
+
+- Publish build artifacts
+
+- Deploy to Azure App Service
+
+- Ensures quality, reliability, and production stability.
+
+☁️ Deployment & DevOps
+
+- Hosted on Azure App Service (Linux).
+
+- Configured with:
+
+- GitHub Actions deployment workflow
+
+- Secure publish profile secret
+
+- Environment variables via Azure Configuration
+
+- HTTPS enforced at platform level
+
+- Production monitoring ready (Application Insights)
+
+
+⚙️ Production Environment Variables
+
+Configured in Azure:
 
 Jwt__Key
-
 Jwt__Issuer
-
 Jwt__Audience
-
 ConnectionStrings__DefaultConnection
-
 ASPNETCORE_ENVIRONMENT=Production
 
 
-📈 Future Improvements
+🧪 Run Locally
+
+```
+    git clone https://github.com/LauraBailie/task-management-api.git
+    cd task-management-api
+    dotnet restore
+    dotnet run
+```
+
+
+Open:
+
+https://localhost:5253/swagger
+
+
+📈 Future Enhancements
 
 - Azure SQL integration
 
@@ -269,6 +219,6 @@ ASPNETCORE_ENVIRONMENT=Production
 
 - Frontend client (React or Blazor)
 
-- Integration tests
+- Integration testing
 
 - API versioning

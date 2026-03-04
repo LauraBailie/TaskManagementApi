@@ -1,15 +1,19 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using Microsoft.EntityFrameworkCore;
-using TaskManagementApi.Data;
-using TaskManagementApi.Services;
-using TaskManagementApi.Repositories;
 using Microsoft.OpenApi.Models;
+using System.Text;
+using TaskManagementApi.Data;
+using TaskManagementApi.Repositories;
+using TaskManagementApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// === SERVICES ===
+// ======================
+// SERVICES
+// ======================
+
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(c =>
@@ -17,26 +21,16 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo
     {
         Title = "Task Management API",
-        Version = "v1",
-        Description = "API for managing tasks with JWT authentication"
+        Version = "v1"
     });
 
-    // XML comments (you already have GenerateDocumentationFile=true)
-    var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-    if (File.Exists(xmlPath))
-        c.IncludeXmlComments(xmlPath);
-
-    c.DocInclusionPredicate((docName, apiDesc) => true); // force everything
-
-    // JWT in Swagger UI
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
-        In = ParameterLocation.Header,
-        Description = "Please enter JWT with Bearer into field",
         Name = "Authorization",
-        Type = SecuritySchemeType.ApiKey,
-        Scheme = "Bearer"
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header
     });
 
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -44,7 +38,11 @@ builder.Services.AddSwaggerGen(c =>
         {
             new OpenApiSecurityScheme
             {
-                Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
             },
             Array.Empty<string>()
         }
@@ -62,7 +60,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuerSigningKey = true,
             ValidIssuer = builder.Configuration["Jwt:Issuer"],
             ValidAudience = builder.Configuration["Jwt:Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
         };
     });
 
@@ -74,29 +73,24 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddScoped<ITaskService, TaskService>();
 
-// ←←← THIS WAS MISSING ←←←
-builder.Services.AddControllers();   // registers your controllers + API explorer
+builder.Services.AddHealthChecks();
 
 var app = builder.Build();
 
-// === PIPELINE ===
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Task Management API v1");
-        c.RoutePrefix = "swagger";
-        c.DocumentTitle = "Task Management API";
-        c.DefaultModelsExpandDepth(-1);
-    });
-}
+// ======================
+// PIPELINE
+// ======================
 
-app.UseHttpsRedirection();
+app.UseSwagger();
+app.UseSwaggerUI();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
-// ←←← THIS WAS ALSO MISSING ←←←
-app.MapControllers();   // actually maps the routes from your controllers
+app.MapControllers();
+app.MapHealthChecks("/health");
+
+// Make root show Swagger
+app.MapGet("/", () => Results.Redirect("/swagger"));
 
 app.Run();

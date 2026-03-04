@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\laura\\TaskManagementApi\\TaskManagementApi.csproj": {}
+    "c:\\Users\\laura\\TaskManagementApi\\TaskManagementApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\laura\\TaskManagementApi\\TaskManagementApi.csproj": {
+    "c:\\Users\\laura\\TaskManagementApi\\TaskManagementApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\laura\\TaskManagementApi\\TaskManagementApi.csproj",
+        "projectUniqueName": "c:\\Users\\laura\\TaskManagementApi\\TaskManagementApi.csproj",
         "projectName": "TaskManagementApi",
-        "projectPath": "C:\\Users\\laura\\TaskManagementApi\\TaskManagementApi.csproj",
+        "projectPath": "c:\\Users\\laura\\TaskManagementApi\\TaskManagementApi.csproj",
         "packagesPath": "C:\\Users\\laura\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\laura\\TaskManagementApi\\obj\\",
+        "outputPath": "c:\\Users\\laura\\TaskManagementApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -43,7 +43,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -87,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.418/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -82,10 +82,12 @@ Controllers --> Swagger
 
 CI --> Azure
 Azure --> Client
+```
 
 
 🔐 Authentication Flow
 
+```mermaid
 sequenceDiagram
     participant Client
     participant AuthController
@@ -100,7 +102,7 @@ sequenceDiagram
     API->>JWT: Validate Token
     JWT-->>API: Valid
     API-->>Client: Protected Resource
-
+```
 
 
 

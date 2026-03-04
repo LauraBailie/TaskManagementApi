@@ -1,6 +1,6 @@
 <div align="center"
 
-    ### Task Management API
+    <h1>📌 Task Management API </h1>
 
     ![.NET](https://img.shields.io/badge/.NET-8.0-blue)
     ![Build](https://img.shields.io/github/actions/workflow/status/LauraBailie/task-management-api/dotnet.yml)
@@ -166,10 +166,18 @@ This ensures code quality and deployment stability.
 
 ---
 
-## Live Demo
+🌍 Live Demo
 
-> Swagger Documentation (Deployed Version):  
-> https://your-azure-url.azurewebsites.net/swagger
+Swagger UI:
+
+👉
+https://manage-task-fdenbvbxe3hbffc2.southafricanorth-01.azurewebsites.net/swagger
+
+Health check endpoint:
+
+👉
+https://manage-task-fdenbvbxe3hbffc2.southafricanorth-01.azurewebsites.net/health
+
 
 ### Example Flow
 
@@ -184,7 +192,7 @@ Bearer <your_token>
 
 ---
 
-## How To Run Locally
+🧪 How To Run Locally 
 
 ```bash
 git clone https://github.com/LauraBailie/task-management-api.git
@@ -198,18 +206,69 @@ Navigate to:
 https://localhost:5253/swagger
 
 
-Future Improvements
 
-- Role-based authorization (Admin/User roles)
+🏗 Architecture
+
+
+
+
+🔐 Features
+
+- User authentication with JWT
+
+- Secure endpoints with [Authorize]
+
+- CRUD task operations
+
+- Swagger with JWT support
+
+- Health check endpoint
+
+- Production environment configuration
+
+
+CI/CD pipeline with automated test & deployment
+
+🚀 DevOps & Deployment
+
+This project uses:
+
+- GitHub Actions for CI/CD
+
+- Automated build & test on push to main
+
+- Secure secret management via GitHub Secrets
+
+- Azure App Service for hosting
+
+- Environment variables configured via Azure
+
+
+⚙️ Environment Variables (Production)
+
+Configured in Azure App Service:
+
+Jwt__Key
+
+Jwt__Issuer
+
+Jwt__Audience
+
+ConnectionStrings__DefaultConnection
+
+ASPNETCORE_ENVIRONMENT=Production
+
+
+📈 Future Improvements
+
+- Azure SQL integration
 
 - Docker containerization
 
-- Azure App Service deployment pipeline
+- Role-based authorization
+
+- Frontend client (React or Blazor)
 
 - Integration tests
 
-- Logging with Serilog
-
-- Pagination & filtering support
-
-- Caching layer (Redis)
+- API versioning

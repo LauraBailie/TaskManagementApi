@@ -171,9 +171,9 @@ On every push to main:
 
 ## ☁️ Deployment & DevOps
 
-- Hosted on Azure App Service (Linux).
+Hosted on Azure App Service (Linux).
 
-- Configured with:
+Configured with:
 
 - GitHub Actions deployment workflow
 
@@ -186,14 +186,18 @@ On every push to main:
 - Production monitoring ready (Application Insights)
 
 
-##⚙️ Production Environment Variables
+## ⚙️ Production Environment Variables
 
 Configured in Azure:
 
 Jwt__Key
+
 Jwt__Issuer
+
 Jwt__Audience
+
 ConnectionStrings__DefaultConnection
+
 ASPNETCORE_ENVIRONMENT=Production
 
 

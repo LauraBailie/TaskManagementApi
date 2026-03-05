@@ -3,7 +3,7 @@
 # 📌 Task Management API
 
 [![.NET](https://img.shields.io/badge/.NET-8.0-blue?style=for-the-badge&logo=dotnet)]()
-[![Build & Deploy](https://img.shields.io/github/actions/workflow/status/LauraBailie/task-management-api/deploy.yml?style=for-the-badge)]()
+[![Build & Deploy](https://img.shields.io/github/actions/workflow/status/LauraBailie/TaskManagementApi/deploy.yml?style=for-the-badge)]()
 [![Azure](https://img.shields.io/badge/Hosted%20on-Azure-0078D4?style=for-the-badge&logo=microsoftazure)]()
 [![Status](https://img.shields.io/badge/status-Production%20Ready-green?style=for-the-badge)]()
 
@@ -85,7 +85,7 @@ Azure --> Client
 ```
 
 
-🔐 Authentication Flow
+## 🔐 Authentication Flow
 
 ```mermaid
 sequenceDiagram
@@ -106,7 +106,8 @@ sequenceDiagram
 
 
 
-📷 Screenshots
+## 📷 Screenshots
+
 ✅ CI/CD Pipeline Success
 <p align="center"> <img src="docs/images/CI-Pipeline.png" width="800"/> </p>
 🔎 Swagger UI (Live Deployment)
@@ -114,7 +115,7 @@ sequenceDiagram
 
 
 
-🔐 Features
+## 🔐 Features
 
 - JWT-secured authentication
 
@@ -133,7 +134,7 @@ sequenceDiagram
 - Production-ready cloud deployment
 
 
-🧪 Testing Strategy
+## 🧪 Testing Strategy
 
 Unit tests validate:
 
@@ -152,7 +153,7 @@ Unit tests validate:
 Tests run automatically via GitHub Actions.
 
 
-🔄 CI/CD Pipeline
+## 🔄 CI/CD Pipeline
 
 On every push to main:
 
@@ -168,7 +169,7 @@ On every push to main:
 
 - Ensures quality, reliability, and production stability.
 
-☁️ Deployment & DevOps
+## ☁️ Deployment & DevOps
 
 - Hosted on Azure App Service (Linux).
 
@@ -185,7 +186,7 @@ On every push to main:
 - Production monitoring ready (Application Insights)
 
 
-⚙️ Production Environment Variables
+##⚙️ Production Environment Variables
 
 Configured in Azure:
 
@@ -196,7 +197,7 @@ ConnectionStrings__DefaultConnection
 ASPNETCORE_ENVIRONMENT=Production
 
 
-🧪 Run Locally
+## 🧪 Run Locally
 
 ```
     git clone https://github.com/LauraBailie/task-management-api.git
@@ -211,7 +212,8 @@ Open:
 https://localhost:5253/swagger
 
 
-📈 Future Enhancements
+
+## 📈 Future Enhancements
 
 - Azure SQL integration
 
@@ -219,7 +221,7 @@ https://localhost:5253/swagger
 
 - Role-based authorization
 
-- Frontend client (React or Blazor)
+- Front-end client (React or Blazor)
 
 - Integration testing
 
